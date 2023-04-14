@@ -3,13 +3,12 @@
 :root {
   font-family: "Montserrat", sans-serif;
   background-image: linear-gradient(
-    to right top,
-    #38438b,
-    #944b94,
-    #d75a88,
-    #ff7e71,
-    #ffb25f,
-    #ffeb68
+    to left bottom,
+    #6bba62,
+    #77c468,
+    #82cd6e,
+    #8ed775,
+    #9ae17b
   );
 
   font-synthesis: none;
