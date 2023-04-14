@@ -1,11 +1,18 @@
 import React from "react";
 import { GoogleMapsProvider } from "@ubilabs/google-maps-react-hooks";
 import PlacesWrapper from "./components/PlacesWrapper/PlacesWrapper";
-import "./App.css";
+import BaseInput from "./components/BaseInput/BaseInput";
+import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app-wrapper">
+      <h1 className="app-wrapper__title">
+        Search nearby restaurants
+      </h1>
+
+      <BaseInput placeholder="Type your location" />
+
       <GoogleMapsProvider
         googleMapsAPIKey={import.meta.env.VITE_MAPS_API_KEY}
         libraries={["places"]}
