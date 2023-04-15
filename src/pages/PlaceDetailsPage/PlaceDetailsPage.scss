@@ -1,0 +1,54 @@
+.place-details-page {
+  padding: 72px 16px 24px 16px;
+  position: relative;
+
+  .base-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+
+    .rating {
+      font-weight: 900;
+      font-size: 16px;
+      margin-left: 16px;
+    }
+  }
+
+  .base-title {
+    text-align: center;
+  }
+
+
+  &__type,
+  &__address {
+    font-size: 16px;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__type {
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  &__address {
+    margin-top: 8px;
+  }
+
+  &__reviews {
+    padding-top: 24px;
+    display: grid;
+    gap: 24px;
+    justify-content: center;
+    max-width: 670px;
+    margin: 0 auto;
+  }
+}
