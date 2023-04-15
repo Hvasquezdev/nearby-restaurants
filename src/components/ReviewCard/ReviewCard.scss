@@ -1,0 +1,50 @@
+.review-card {
+  background-color: rgba($color: #fff, $alpha: 0.25);
+  padding: 12px 16px;
+  border-radius: 12px;
+
+  &__head {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    column-gap: 16px;
+    align-items: center;
+    color: #fff;
+  }
+
+  &__media {
+    border-radius: 100%;
+    border: 2px solid #fff;
+    padding: 2px;
+    display: flex;
+
+    .author-image {
+      object-fit: cover;
+      border-radius: 100%;
+    }
+  }
+
+  &__author {
+    .author-name {
+      margin-bottom: 4px;
+      font-weight: 900;
+      letter-spacing: 0.25px;
+      font-size: 16px;
+    }
+
+    .rating-details {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4px;
+    }
+  }
+
+  &__description {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: #fff;
+    margin-top: 8px;
+    padding-left: 64px;
+  }
+}
