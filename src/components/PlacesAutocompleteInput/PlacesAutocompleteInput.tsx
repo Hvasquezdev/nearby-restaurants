@@ -1,34 +1,16 @@
 import React, { useRef, useState } from "react";
-import { useAutocomplete } from "@ubilabs/google-maps-react-hooks";
 import BaseInput from "../BaseInput/BaseInput";
+import { useAutocompleteLocation } from "../../hooks/useAutocompleteLocation";
 import "./PlacesAutocompleteInput.scss";
 
 const PlacesAutocompleteInput = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
-
   const [inputValue, setInputValue] = useState("");
-  const [selectedPlace, setSelectedPlace] =
-    useState<google.maps.places.PlaceResult | null>(null);
-
-  const onPlaceChanged = (place: google.maps.places.PlaceResult) => {
-    if (place) {
-      setSelectedPlace(place);
-
-      const formattedAddress = place.formatted_address;
-      const { name } = place;
-
-      if (!formattedAddress || !name) {
-        return;
-      }
-
-      setInputValue(formattedAddress || name);
-      inputRef.current?.focus();
-    }
-  };
-
-  useAutocomplete({
-    inputField: inputRef && inputRef.current,
-    onPlaceChanged,
+  
+  // TODO: save selected place in a Redux store
+  const { selectedPlace } = useAutocompleteLocation({
+    inputEl: inputRef?.current,
+    onUpdateInputValue: setInputValue
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
