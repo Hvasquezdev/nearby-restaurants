@@ -28,7 +28,11 @@ export const usePlaces = ({
       if (status !== google.maps.places.PlacesServiceStatus.OK || !results) {
         console.error(status);
       } else {
-        setPlaceResults(results);
+        const restaurants = results
+          .slice(0, 10)
+          .sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+        setPlaceResults(restaurants);
       }
 
       setIsLoading(false);
