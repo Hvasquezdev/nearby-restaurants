@@ -1,6 +1,7 @@
 import React from "react";
 import { GoogleMapsProvider } from "@ubilabs/google-maps-react-hooks";
 import PlacesWrapper from "./components/PlacesWrapper/PlacesWrapper";
+import PlacesAutocompleteInput from "./components/PlacesAutocompleteInput/PlacesAutocompleteInput";
 import BaseInput from "./components/BaseInput/BaseInput";
 import "./App.scss";
 
@@ -11,13 +12,12 @@ function App() {
         Search nearby restaurants
       </h1>
 
-      <BaseInput placeholder="Type your location" />
-
       <GoogleMapsProvider
         googleMapsAPIKey={import.meta.env.VITE_MAPS_API_KEY}
         libraries={["places"]}
       >
         <React.StrictMode>
+          <PlacesAutocompleteInput />
           <PlacesWrapper />
         </React.StrictMode>
       </GoogleMapsProvider>

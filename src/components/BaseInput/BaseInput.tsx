@@ -1,14 +1,18 @@
 import React from "react";
 import "./BaseInput.scss";
 
-const BaseInput = ({
-  className = '',
-  ...props
-}: React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->) => {
-  return <input className={`base-input ${className}`} {...props} />;
+interface BaseInputProps
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
+  innerRef: React.LegacyRef<HTMLInputElement>;
+}
+
+const BaseInput = ({ className = "", innerRef, ...props }: BaseInputProps) => {
+  return (
+    <input {...props} className={`base-input ${className}`} ref={innerRef} />
+  );
 };
 
 export default BaseInput;
