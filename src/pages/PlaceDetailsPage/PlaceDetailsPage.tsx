@@ -22,7 +22,7 @@ const PlaceDetailsPage = () => {
         <BaseTitle>There are no details to show</BaseTitle>
       )}
 
-      {!!(!isLoading && placeDetails) && (
+      {!!placeDetails && (
         <>
           <div className="place-details-page__header">
             <div className="place-details-page__title">
