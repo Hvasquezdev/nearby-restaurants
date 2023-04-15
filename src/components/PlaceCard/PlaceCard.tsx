@@ -8,11 +8,12 @@ interface PlaceCardProps {
   name: string;
   rating: number;
   placeId: string;
+  onClick?: (placeId: string) => void;
 }
 
 const PlaceCard = (props: PlaceCardProps) => {
   return (
-    <div className="place-card">
+    <div className="place-card" onClick={() => props?.onClick?.(props.placeId)}>
       <div className="place-card__icon">
         <img src={props.iconUrl} alt="Place icon" width={24} height={24} />
       </div>

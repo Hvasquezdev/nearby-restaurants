@@ -3,9 +3,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import PlaceCard from "../PlaceCard/PlaceCard";
 import EmptyState from "../EmptyState/EmptyState";
+import { useNavigate } from "react-router-dom";
 import "./PlacesWrapper.scss";
 
 const PlacesWrapper = () => {
+  const navigate = useNavigate();
   const locationLatLng = useSelector(
     ({ location }: RootState) => location.locationLatLng
   );
@@ -35,6 +37,7 @@ const PlacesWrapper = () => {
             rating={place.rating || 0}
             placeId={place.place_id || ""}
             key={`${index}-${place.place_id}`}
+            onClick={(placeId) => navigate(`/place/${placeId}`)}
           />
         ))}
     </div>
