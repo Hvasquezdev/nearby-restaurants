@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useGeocoding } from "../../hooks/useGeocoding";
+import {
+  setLocationAddress,
+  setLocationLatLng,
+} from "../../store/locationSlice";
 import BaseButton from "../BaseButton/BaseButton";
 
 const DeviceLocationButton = () => {
@@ -8,6 +13,7 @@ const DeviceLocationButton = () => {
   );
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const { formattedAddress, isLoadingAddress } = useGeocoding(location);
+  const dispatch = useDispatch();
 
   const handleSuccessDeviceLocation = (position: GeolocationPosition) => {
     setIsLoadingLocation(false);
@@ -28,6 +34,11 @@ const DeviceLocationButton = () => {
       handleErrorDeviceLocation
     );
   };
+
+  useEffect(() => {
+    dispatch(setLocationLatLng(location));
+    dispatch(setLocationAddress(formattedAddress));
+  }, [formattedAddress]);
 
   return (
     <BaseButton
