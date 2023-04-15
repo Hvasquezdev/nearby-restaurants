@@ -1,5 +1,7 @@
 import React from "react";
 import { GoogleMapsProvider } from "@ubilabs/google-maps-react-hooks";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 import PlacesWrapper from "./components/PlacesWrapper/PlacesWrapper";
 import PlacesAutocompleteInput from "./components/PlacesAutocompleteInput/PlacesAutocompleteInput";
 import DeviceLocationButton from "./components/DeviceLocationButton/DeviceLocationButton";
@@ -15,9 +17,11 @@ function App() {
         libraries={["places"]}
       >
         <React.StrictMode>
-          <PlacesAutocompleteInput />
-          <DeviceLocationButton />
-          <PlacesWrapper />
+          <Provider store={store}>
+            <PlacesAutocompleteInput />
+            <DeviceLocationButton />
+            <PlacesWrapper />
+          </Provider>
         </React.StrictMode>
       </GoogleMapsProvider>
     </div>
