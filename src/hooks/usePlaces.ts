@@ -1,8 +1,8 @@
 import { usePlacesService } from "@ubilabs/google-maps-react-hooks";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface PlacesProps {
-  location: google.maps.LatLngLiteral;
+  location: google.maps.LatLngLiteral | null;
   type: string;
   searchRadius?: number;
 }
@@ -10,18 +10,34 @@ interface PlacesProps {
 export const usePlaces = ({
   location,
   type,
-  searchRadius = 800,
+  searchRadius = 500,
 }: PlacesProps) => {
   const [placeResults, setPlaceResults] = useState<
     google.maps.places.PlaceResult[]
   >([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const divContainer = useMemo(() => document.createElement('div'), []);
+  const divContainer = useMemo(() => document.createElement("div"), []);
   const service = usePlacesService({ divElement: divContainer });
 
+  const handleOnNearbySearch = useCallback(
+    (
+      results: google.maps.places.PlaceResult[] | null,
+      status: google.maps.places.PlacesServiceStatus
+    ) => {
+      if (status !== google.maps.places.PlacesServiceStatus.OK || !results) {
+        console.error(status);
+      } else {
+        setPlaceResults(results);
+      }
+
+      setIsLoading(false);
+    },
+    []
+  );
+
   useEffect(() => {
-    if (!service) {
+    if (!service || !location) {
       return;
     }
 
@@ -31,26 +47,12 @@ export const usePlaces = ({
       type,
     };
 
-    function callback(
-      results: google.maps.places.PlaceResult[] | null,
-      status: google.maps.places.PlacesServiceStatus
-    ) {
-      if (status !== google.maps.places.PlacesServiceStatus.OK || !results) {
-        console.error(status);
-        setIsLoading(false);
-        return;
-      }
-
-      setPlaceResults(results);
-      setIsLoading(false);
-    }
-
     setIsLoading(true);
-    service.nearbySearch(request, callback);
-  }, [Boolean(service)]);
+    service.nearbySearch(request, handleOnNearbySearch);
+  }, [Boolean(service), location]);
 
   return {
     placeResults,
-    isLoading
+    isLoading,
   };
 };
