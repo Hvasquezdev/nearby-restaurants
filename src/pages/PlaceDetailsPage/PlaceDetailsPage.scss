@@ -13,11 +13,16 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 12px;
+    gap: 8px;
+    flex-direction: column;
+    
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
 
     .rating {
       font-weight: 900;
       font-size: 16px;
-      margin-left: 16px;
     }
   }
 
