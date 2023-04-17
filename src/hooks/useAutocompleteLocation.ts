@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useAutocomplete } from "@ubilabs/google-maps-react-hooks";
 
-interface useAutocompleteLocationProps {
+interface UseAutocompleteLocationProps {
   inputEl: HTMLInputElement | null;
   onUpdateInputValue: (value: string) => void;
   onPlaceSelected?: (place: google.maps.places.PlaceResult) => void;
 }
 
 export const useAutocompleteLocation = (
-  props: useAutocompleteLocationProps
+  props: UseAutocompleteLocationProps
 ) => {
   const onPlaceChanged = (place: google.maps.places.PlaceResult) => {
     if (place) {
