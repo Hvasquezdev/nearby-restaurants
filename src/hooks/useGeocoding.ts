@@ -37,6 +37,10 @@ export const useGeocoding = (location: google.maps.LatLngLiteral | null) => {
     if (location && "lat" in location) {
       handleGeocodingRequest();
     }
+
+    if (!location && formattedAddress) {
+      setFormattedAddress("");
+    }
   }, [location]);
 
   return {
