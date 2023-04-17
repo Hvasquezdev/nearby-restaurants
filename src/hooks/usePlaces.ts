@@ -1,7 +1,7 @@
 import { usePlacesService } from "@ubilabs/google-maps-react-hooks";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-interface PlacesProps {
+interface UsePlacesProps {
   location: google.maps.LatLngLiteral | null;
   type: string;
   searchRadius?: number;
@@ -11,7 +11,7 @@ export const usePlaces = ({
   location,
   type,
   searchRadius = 500,
-}: PlacesProps) => {
+}: UsePlacesProps) => {
   const [placeResults, setPlaceResults] = useState<
     google.maps.places.PlaceResult[]
   >([]);
