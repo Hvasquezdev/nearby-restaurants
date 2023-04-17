@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useGeocoding } from "../../hooks/useGeocoding";
 import {
   setLocationAddress,
   setLocationLatLng,
 } from "../../store/locationSlice";
-import { RootState } from "../../store/store";
 import BaseButton from "../BaseButton/BaseButton";
 
 const DeviceLocationButton = () => {
-  const savedLocationAddress = useSelector((state: RootState) => state.location.locationAddress)
   const [location, setLocation] = useState<google.maps.LatLngLiteral | null>(
     null
   );
@@ -41,19 +39,14 @@ const DeviceLocationButton = () => {
     if (formattedAddress) {
       dispatch(setLocationLatLng(location));
       dispatch(setLocationAddress(formattedAddress));
-    }
-  }, [formattedAddress]);
-
-  useEffect(() => {
-    if (savedLocationAddress !== formattedAddress) {
       setLocation(null);
     }
-  }, [savedLocationAddress]);
+  }, [formattedAddress]);
 
   return (
     <BaseButton
       onClick={handleRequestDeviceLocation}
-      disabled={isLoadingLocation || isLoadingAddress || !!formattedAddress}
+      disabled={isLoadingLocation || isLoadingAddress}
     >
       Use device location
     </BaseButton>
