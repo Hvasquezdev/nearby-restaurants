@@ -2,20 +2,8 @@ import React from "react";
 import { GoogleMapsProvider } from "@ubilabs/google-maps-react-hooks";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/HomePage/HomePage";
-import PlaceDetailsPage from "./pages/PlaceDetailsPage/PlaceDetailsPage";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: '/place/:placeId',
-    element: <PlaceDetailsPage />
-  }
-]);
+import { RouterProvider } from "react-router-dom";
+import { router } from "./Router";
 
 function App() {
   return (
