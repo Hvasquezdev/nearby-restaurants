@@ -20,6 +20,7 @@ const ReviewCard = (props: ReviewCardProps) => {
             width={40}
             height={40}
             className="author-image"
+            referrerPolicy="no-referrer"
           />
         </div>
 
